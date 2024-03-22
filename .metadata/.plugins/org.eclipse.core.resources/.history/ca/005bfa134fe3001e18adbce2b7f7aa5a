@@ -1,0 +1,11 @@
+package com.easylearning.service;
+
+import com.easylearning.DTO.Book;
+
+public class BookService {
+
+	public boolean saveBook(Book book) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

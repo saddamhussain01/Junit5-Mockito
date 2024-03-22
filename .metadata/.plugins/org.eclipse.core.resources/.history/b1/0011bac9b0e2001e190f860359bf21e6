@@ -1,0 +1,27 @@
+package com.easylearning.controllertest;
+
+import org.mockito.ArgumentMatchers;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.easylearning.DTO.Book;
+import com.easylearning.controller.BookController;
+import com.easylearning.service.BookService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@WebMvcTest(value = BookController.class)
+public class TestBookController {
+	
+	
+	@MockBean
+	private BookService bookService;
+	
+	
+	public void testAddBook() {
+		
+		when(bookService.saveBook(ArgumentMatchers.any())).the
+		Book book = new Book(100, "Java", 500.0);
+		ObjectMapper mapper = new ObjectMapper();
+	}
+
+}

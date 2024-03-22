@@ -1,0 +1,55 @@
+package com.easylearning.controllertest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.http.client.MockClientHttpRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import com.easylearning.controller.GreetingsController;
+import com.easylearning.service.WelcomeService;
+
+
+// @WebMvcTest annotation is used to represent this test class is perform to GreetingController class
+@WebMvcTest(value = GreetingsController.class)
+public class TestGreetingsController {
+	
+	
+	@MockBean
+	private WelcomeService welcomeService;
+	
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@Test
+	public void testGreeting() throws Exception {
+		when(welcomeService.getGreetings()).thenReturn("Hello Everyone Welcome to Easy Learning channel");
+		
+		//created rewuest object
+		MockHttpServletRequestBuilder requestObject = MockMvcRequestBuilders.get("/api/v1/welcome");
+		
+		
+		//send a http request builder 
+		ResultActions perform = mockMvc.perform(requestObject);
+		
+		MvcResult result = perform.andReturn();
+		
+		MockHttpServletResponse response = result.getResponse();
+		int status = response.getStatus();
+		assertEquals(200, status);
+		 
+		
+		
+	}
+
+}

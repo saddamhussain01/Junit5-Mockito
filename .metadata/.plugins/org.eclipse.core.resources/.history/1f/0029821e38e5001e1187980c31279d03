@@ -1,0 +1,23 @@
+package com.easylearning.service;
+
+import com.easylearning.entity.Employee;
+import com.easylearning.repository.EmployeeRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmployeeServiceImpl {
+
+
+    private EmployeeRepository employeeRepository;
+
+    public List<Employee> getListOfEmployees(){
+
+        return employeeRepository.findAll();
+    }
+}

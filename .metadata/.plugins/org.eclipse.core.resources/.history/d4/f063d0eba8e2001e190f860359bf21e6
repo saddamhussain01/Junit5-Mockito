@@ -1,0 +1,8 @@
+package com.easylearning.controllertest;
+
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+
+@
+public class TestGreetingsController {
+
+}

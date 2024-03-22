@@ -1,0 +1,5 @@
+package com.easylearning.service;
+
+public class BookService {
+
+}

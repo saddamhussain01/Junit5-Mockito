@@ -1,0 +1,5 @@
+package com.easylearning.controllertest;
+
+public class TestGreetingsController {
+
+}
