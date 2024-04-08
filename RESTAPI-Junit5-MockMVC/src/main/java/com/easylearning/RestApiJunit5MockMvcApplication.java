@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestapiJunit5MockMvcProjectApplication {
+public class RestApiJunit5MockMvcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestapiJunit5MockMvcProjectApplication.class, args);
+		SpringApplication.run(RestApiJunit5MockMvcApplication.class, args);
 	}
 
 }

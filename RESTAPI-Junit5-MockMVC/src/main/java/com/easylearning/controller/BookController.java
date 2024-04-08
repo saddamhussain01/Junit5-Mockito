@@ -5,12 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.easylearning.DTO.Book;
 import com.easylearning.service.BookService;
 
 @RestController
+@RequestMapping("/api/v1")     // localhost:8080/api/v1/addbook
 public class BookController {
 
 	@Autowired

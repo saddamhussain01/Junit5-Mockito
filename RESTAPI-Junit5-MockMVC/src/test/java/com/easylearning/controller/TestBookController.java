@@ -1,7 +1,9 @@
-package com.easylearning.controllertest;
+package com.easylearning.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -19,7 +21,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.easylearning.DTO.Book;
 import com.easylearning.controller.BookController;
 import com.easylearning.service.BookService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(value = BookController.class)
@@ -31,18 +32,19 @@ public class TestBookController {
 	@Autowired
 	private MockMvc mockMvc;
 
-	
 	@Test
 	public void testAddBook() throws Exception {
 
 		when(bookService.saveBook(ArgumentMatchers.any())).thenReturn(true);
+		
 		Book book = new Book(100, "Java", 500.0);
+		
 		ObjectMapper mapper = new ObjectMapper();
 
 		// writeValueAsString method is converting java object to json
 		String bookJson = mapper.writeValueAsString(book);
 
-		MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/addbook")
+		MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/api/v1/addbook")
 				                                                         .contentType(MediaType.APPLICATION_JSON)
 				                                                         .content(bookJson);
                 
@@ -58,6 +60,46 @@ public class TestBookController {
 		
 		assertEquals(201, status);
 
+	}
+
+	@Test
+	public void testAddBook1() throws Exception {
+		
+		when(bookService.saveBook(ArgumentMatchers.any())).thenReturn(true);
+        
+		Book book = new Book(100, "Java", 500.0);
+		
+		ObjectMapper mapper = new ObjectMapper();
+
+		// writeValueAsString method is converting java object to json
+		String bookJson = mapper.writeValueAsString(book);
+		
+		mockMvc.perform(post("/api/v1/addbook")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(bookJson))
+		        .andExpect(status().isCreated());
+	
+		
+	}
+	
+	@Test
+	public void testAddBook2() throws Exception {
+		
+		when(bookService.saveBook(ArgumentMatchers.any())).thenReturn(false);
+        
+		Book book = new Book(100, "Java", 500.0);
+		
+		ObjectMapper mapper = new ObjectMapper();
+
+		// writeValueAsString method is converting java object to json
+		String bookJson = mapper.writeValueAsString(book);
+		
+		mockMvc.perform(post("/api/v1/addbook")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(bookJson))
+		        .andExpect(status().isBadRequest());
+	
+		
 	}
 
 }

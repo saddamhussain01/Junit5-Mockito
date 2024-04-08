@@ -1,7 +1,9 @@
-package com.easylearning.controllertest;
+package com.easylearning.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +35,10 @@ public class TestGreetingsController {
 	
 	@Test
 	public void testGreeting() throws Exception {
+		
 		when(welcomeService.getGreetings()).thenReturn("Hello Everyone Welcome to Easy Learning channel");
 		
-		//created rewuest object
+		//created request object
 		MockHttpServletRequestBuilder requestObject = MockMvcRequestBuilders.get("/api/v1/welcome");
 		
 		
@@ -45,10 +48,18 @@ public class TestGreetingsController {
 		MvcResult result = perform.andReturn();
 		
 		MockHttpServletResponse response = result.getResponse();
-		int status = response.getStatus();
-		assertEquals(200, status);
-		 
 		
+		int status = response.getStatus();
+		assertEquals(200, status);	
+		
+	}
+	
+	@Test
+	public void testGreetings() throws Exception {
+		
+		when(welcomeService.getGreetings()).thenReturn("Hello Everyone Welcome to Easy Learning channel");
+		
+		mockMvc.perform(get("/api/v1/welcome")).andExpect(status().isOk());
 		
 	}
 

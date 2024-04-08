@@ -1,16 +1,9 @@
 package com.easylearning.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Entity
 public class Employee {
 
-  
-	@Id
+
     private int id;
     private String empName;
     private String role;
@@ -21,6 +14,34 @@ public class Employee {
 		this.empName = empName;
 		this.role = role;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	
+	
+	
     
     
 

@@ -9,6 +9,6 @@ public class BookService {
 
 	public boolean saveBook(Book book) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }
